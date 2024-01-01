@@ -1,0 +1,22 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+</script>
+
+<template>
+	<header class="bg-white shadow">
+		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+				<nav class="md:flex space-x-10">
+					<RouterLink to="/" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						Txt2Img
+					</RouterLink>
+					<RouterLink to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						About
+					</RouterLink>
+				</nav>
+			</div>
+		</div>
+	</header>
+</template>
+
+<style scoped></style>
