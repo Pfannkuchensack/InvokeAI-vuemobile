@@ -8,6 +8,9 @@ import { RouterLink } from 'vue-router';
 			<div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
 				<nav class="md:flex space-x-10">
 					<RouterLink to="/" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						Settings
+					</RouterLink>
+					<RouterLink to="/t2i" class="text-base font-medium text-gray-500 hover:text-gray-900">
 						Txt2Img
 					</RouterLink>
 					<RouterLink to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900">

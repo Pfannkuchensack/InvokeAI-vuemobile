@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HeaderView from "../components/HeaderView.vue";
+const props = defineProps(['modelssd1']);
 </script>
 
 <template>
