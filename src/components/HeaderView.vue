@@ -13,6 +13,9 @@ import { RouterLink } from 'vue-router';
 					<RouterLink to="/t2i" class="text-base font-medium text-gray-500 hover:text-gray-900">
 						Txt2Img
 					</RouterLink>
+					<RouterLink to="/gallery" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						Gallery
+					</RouterLink>
 					<RouterLink to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900">
 						About
 					</RouterLink>

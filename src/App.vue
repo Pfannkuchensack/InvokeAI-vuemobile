@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router';
 import { useModelssd1Store } from '@/stores/modelssd1';
 import { useStorage } from '@vueuse/core';
-const state = useStorage('invokeip', { ip: '', port: '' })
+const state = useStorage('invokeip', { ip: '', port: '' });
 
 const modelssd1 = useModelssd1Store();
 if (state.value.ip != '' && state.value.port != '') {
