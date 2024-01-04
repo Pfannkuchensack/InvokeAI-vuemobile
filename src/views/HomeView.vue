@@ -13,10 +13,10 @@ const config = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '
 <template>
   <div>
     <HeaderView />
-    <textarea v-if="prompts.positive" v-model="prompts.positive" autocomplete="off" role="presentation" id="pprompt"
+    <textarea v-model="prompts.positive" autocomplete="off" role="presentation" id="pprompt"
       class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-1" placeholder="Positive Prompt"
       rows="4"></textarea>
-    <textarea v-if="prompts.negative" v-model="prompts.negative" autocomplete="off" role="presentation" id="nprompt"
+    <textarea v-model="prompts.negative" autocomplete="off" role="presentation" id="nprompt"
       class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-1" placeholder="Negative Prompt"
       rows="4"></textarea>
     <!-- Lists of models -->
