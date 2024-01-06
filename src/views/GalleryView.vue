@@ -23,7 +23,7 @@ const showImageFull = async (image) => {
 <template>
 	<div class="w-vhv">
 		<HeaderView />
-		<div class="bg-gray-100 p-6 rounded-lg grid gap-4 grid-cols-2 grid-rows-auto" v-if="boards.listBoards">
+		<div class="bg-gray-100 p-6 rounded-lg grid gap-4 lg:grid-cols-8 grid-cols-2 grid-rows-auto" v-if="boards.listBoards">
 			<div v-for="board in boards.listBoards" :key="board.id" class="h-40 w-40 mx-1">
 				<a href="#" @click="loadBoardImages(board.board_id)">
 					<figure class="relative h-40 w-40">
@@ -39,7 +39,7 @@ const showImageFull = async (image) => {
 		<div v-else>
 			<p>LADE BOARDS</p>
 		</div>
-		<div class="bg-gray-300 p-6 rounded-lg grid gap-4 grid-cols-2 grid-rows-auto"
+		<div class="bg-gray-300 p-6 rounded-lg grid gap-4 lg:grid-cols-8 grid-cols-2 grid-rows-auto"
 			v-if="boards.listBoardImages && !loading">
 			<div v-for="image in boards.listBoardImages.reverse()" :key="image.id" class="h-40 w-40 mx-1">
 				<a @click="showImageFull(image)">

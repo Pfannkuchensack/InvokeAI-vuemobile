@@ -9,7 +9,7 @@ if (modelssd1.listmodelssd1 == null) {
 }
 const prompts = useStorage('prompts', { positive: '', negative: '' });
 const config = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '', seed: 0, width: 512, height: 512, clip: 0, scheduler: 'euler' });
-const schedulers = [ 'ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heun_k', 'euler', 'euler_k', 'euler_a', 'kdpm_2', 'kdpm_2_a', 'dpmpp_2s', 'dpmpp_2s_k', 'dpmpp_2m', 'dpmpp_2m_k', 'dpmpp_2m_sde', 'dpmpp_2m_sde_k', 'dpmpp_sde', 'dpmpp_sde_k', 'unipc' ];
+const schedulers = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heun_k', 'euler', 'euler_k', 'euler_a', 'kdpm_2', 'kdpm_2_a', 'dpmpp_2s', 'dpmpp_2s_k', 'dpmpp_2m', 'dpmpp_2m_k', 'dpmpp_2m_sde', 'dpmpp_2m_sde_k', 'dpmpp_sde', 'dpmpp_sde_k', 'unipc'];
 </script>
 
 <template>
@@ -76,8 +76,11 @@ const schedulers = [ 'ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'he
 				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
 		</div>
 		<button type="button"
-			class="w-full mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
-			@click="modelssd1.invoke(state, prompts, config)">Invoke</button>
+			class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-left"
+			@click="modelssd1.invoke(state, prompts, config, false)">Invoke</button>
+		<button type="button"
+			class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-right"
+			@click="modelssd1.invoke(state, prompts, config, true)">Invoke with Preview</button>
 	</div>
 </template>
 
