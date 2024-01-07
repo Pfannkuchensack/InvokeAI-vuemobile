@@ -30,9 +30,10 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				runs: 1,
+				runs: config.iterations,
 				prepend: false,
 				batch: {
+					batch_id: Math.random().toString(36).substring(7),
 					data: [
 							{
 								node_path: "noise",

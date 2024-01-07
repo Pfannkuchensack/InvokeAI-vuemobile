@@ -23,6 +23,12 @@ const router = createRouter({
       name: 'gallery',
       component: () => import('../views/GalleryView.vue')
     },
+		{
+      path: '/gallery/:board_id',
+      name: 'gallery_board',
+      component: () => import('../views/GalleryImageView.vue'),
+			props: true
+    },
     {
       path: '/about',
       name: 'about',

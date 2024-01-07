@@ -9,7 +9,6 @@ export const useBoardsStore = defineStore('boards', () => {
 	function getboards() {
 		// make api request
 		fetch('http://' + state.value.ip + ':' + state.value.port + '/api/v1/boards/?all=true').then(response => response.json()).then(data => {
-			console.log(data);
 			listBoards.value = data;
 		});
 	}
@@ -19,6 +18,16 @@ export const useBoardsStore = defineStore('boards', () => {
 		});
 		return listBoardImages;
 	}
+	async function getImagesWithoutBoard() {
+		await fetch('http://' + state.value.ip + ':' + state.value.port + '/api/v1/images/?categories=general&is_intermediate=false&board_id=none&offset=0&limit=100').then(response => response.json()).then(data => {
+			let data2: any = [];
+			data.items.forEach(e => { 
+				data2.push(e.image_name);
+			 })
+			listBoardImages.value = data2;
+		});
+		return listBoardImages;
+	}
 
-	return { listBoards, listBoardImages, getboards, getImagesInBoard }
+	return { listBoards, listBoardImages, getboards, getImagesInBoard, getImagesWithoutBoard}
 })
