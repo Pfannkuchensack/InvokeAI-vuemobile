@@ -12,7 +12,10 @@ const board_id = props.board_id;
 const loadBoardImages = async (board_id) => {
 	loading.value = true;
 	if(board_id == 'none')
+	{
 		await boards.getImagesWithoutBoard();
+		boards.listBoardImages.reverse();
+	}
 	else
 		await boards.getImagesInBoard(board_id);
 	loading.value = false;
@@ -33,7 +36,7 @@ const showImageFull = async (image) => {
 				<a @click="showImageFull(image)">
 					<figure class="relative h-40 w-40">
 						<img class="rounded-lg h-40 w-40 object-cover" alt="image"
-							:src="`http://localhost:9090/api/v1/images/i/${image}/thumbnail`" />
+							:src="`http://${state.ip}:${state.port}/api/v1/images/i/${image}/thumbnail`" />
 					</figure>
 				</a>
 			</div>

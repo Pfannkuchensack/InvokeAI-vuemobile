@@ -16,8 +16,7 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 	*/
 	function invoke(state: object, prompt: object, config: object, preview: boolean) {
 		// make api request
-		if(preview)
-		{
+		if (preview) {
 			// auf die preview weiterleiten vue router
 			router.push({ name: 'preview' });
 		}
@@ -30,90 +29,95 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				runs: config.iterations,
-				prepend: false,
-				batch: {
-					batch_id: Math.random().toString(36).substring(7),
-					data: [
-							{
-								node_path: "noise",
-								field_name: "seed",
-								items: [config.seed]
-							},
-							{
-								node_path: "metadata_accumulator",
-								field_name: "seed",
-								items: [config.seed]
-							}
-					],
-					graph: {
-						id: "text_to_image_graph",
-						nodes: {
-							main_model_loader: {
-								type: "main_model_loader",
-								id: "main_model_loader",
-								is_intermediate: true,
-								model: {
-									model_name: config.model,
-									base_model: "sd-1",
-									model_type: "main"
+				"prepend": false,
+				"batch": {
+					"graph": {
+						"id": "text_to_image_graph",
+						"nodes": {
+							"main_model_loader": {
+								"type": "main_model_loader",
+								"id": "main_model_loader",
+								"is_intermediate": true,
+								"model": {
+									"model_name": config.model,
+									"base_model": "sd-1",
+									"model_type": "main"
 								}
 							},
-							clip_skip: {
-								type: "clip_skip",
-								id: "clip_skip",
-								skipped_layers: config.clip,
-								is_intermediate: true
+							"clip_skip": {
+								"type": "clip_skip",
+								"id": "clip_skip",
+								"skipped_layers": config.clip,
+								"is_intermediate": true
 							},
-							positive_conditioning: {
-								type: "compel",
-								id: "positive_conditioning",
-								prompt: prompt.positive,
-								is_intermediate: true
+							"positive_conditioning": {
+								"type": "compel",
+								"id": "positive_conditioning",
+								"prompt": prompt.positive,
+								"is_intermediate": true
 							},
-							negative_conditioning: {
-								type: "compel",
-								id: "negative_conditioning",
-								prompt: prompt.negative,
-								is_intermediate: true
+							"negative_conditioning": {
+								"type": "compel",
+								"id": "negative_conditioning",
+								"prompt": prompt.negative,
+								"is_intermediate": true
 							},
-							noise: {
-								type: "noise",
-								id: "noise",
-								seed: config.seed,
-								width: config.width,
-								height: config.height,
-								use_cpu: true,
-								is_intermediate: true
+							"noise": {
+								"type": "noise",
+								"id": "noise",
+								"seed": config.seed,
+								"width": config.width,
+								"height": config.height,
+								"use_cpu": true,
+								"is_intermediate": true
 							},
-							denoise_latents: {
-								type: "denoise_latents",
-								id: "denoise_latents",
-								is_intermediate: true,
-								cfg_scale: config.cfg,
-								scheduler: config.scheduler || "euler_k",
-								steps: config.steps,
-								denoising_start: 0,
-								denoising_end: 1
+							"denoise_latents": {
+								"type": "denoise_latents",
+								"id": "denoise_latents",
+								"is_intermediate": true,
+								"cfg_scale": config.cfg,
+								"scheduler": config.scheduler,
+								"steps": config.steps,
+								"denoising_start": 0,
+								"denoising_end": 1
 							},
-							latents_to_image: {
-								type: "l2i",
-								id: "latents_to_image",
-								fp32: true,
-								is_intermediate: true
+							"latents_to_image": {
+								"type": "l2i",
+								"id": "latents_to_image",
+								"fp32": true,
+								"is_intermediate": true
 							},
-							metadata_accumulator: {
-								id: "metadata_accumulator",
-								type: "metadata_accumulator",
-								generation_mode: "txt2img",
-								cfg_scale: config.cfg,
-								height: config.height,
-								width: config.width,
-								positive_prompt: prompt.positive,
-								negative_prompt: prompt.negative,
+							"core_metadata": {
+								"id": "core_metadata",
+								"type": "core_metadata",
+								"generation_mode": "txt2img",
+								"cfg_scale": config.cfg,
+								"height": config.height,
+								"width": config.width,
+								"positive_prompt": prompt.positive,
+								"negative_prompt": prompt.negative,
+								"model": {
+									"model_name": config.model,
+									"base_model": "sd-1",
+									"model_type": "main"
+								},
+								"steps": config.steps,
+								"rand_device": "cpu",
+								"scheduler": config.scheduler,
+								"controlnets": [],
+								"loras": [],
+								"ipAdapters": [],
+								"t2iAdapters": [],
+								"clip_skip": 0
+							},
+							"save_image": {
+								"id": "save_image",
+								"type": "save_image",
+								"is_intermediate": false,
+								"use_cache": false
 							}
 						},
-						edges: [
+						"edges": [
 							{
 								"source": {
 									"node_id": "main_model_loader",
@@ -196,7 +200,7 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 							},
 							{
 								"source": {
-									"node_id": "metadata_accumulator",
+									"node_id": "core_metadata",
 									"field": "metadata"
 								},
 								"destination": {
@@ -216,7 +220,7 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 							},
 							{
 								"source": {
-									"node_id": "metadata_accumulator",
+									"node_id": "core_metadata",
 									"field": "metadata"
 								},
 								"destination": {
@@ -235,7 +239,26 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 								}
 							}
 						]
-					}
+					},
+					"runs": config.iterations,
+					"data": [
+						[
+							{
+								"node_path": "noise",
+								"field_name": "seed",
+								"items": [
+									config.seed
+								]
+							},
+							{
+								"node_path": "core_metadata",
+								"field_name": "seed",
+								"items": [
+									config.seed
+								]
+							}
+						]
+					]
 				}
 			})
 		}).then(response => response.json()).then(data => {

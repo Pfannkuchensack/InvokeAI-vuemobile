@@ -6,14 +6,8 @@ import { useStorage } from '@vueuse/core';
 const state = useStorage('invokeip', { ip: '', port: '' });
 //const props = defineProps(['boards']);
 const boards = useBoardsStore();
-let loading = ref(false);
 if (boards.listBoards == null)
 	boards.getboards();
-const loadBoardImages = async (board_id) => {
-	loading.value = true;
-	await boards.getImagesInBoard(board_id);
-	loading.value = false;
-}
 </script>
 
 <template>
@@ -32,8 +26,9 @@ const loadBoardImages = async (board_id) => {
 			<div v-for="board in boards.listBoards" :key="board.board_id" class="h-40 w-40 mx-1">
 				<RouterLink :to="`/gallery/${board.board_id}`">
 					<figure class="relative h-40 w-40">
-						<img class="rounded-lg h-40 w-40 object-cover" :alt="board.board_name + ' images'"
-							:src="`http://localhost:9090/api/v1/images/i/${board.cover_image_name}/thumbnail`" />
+						<img v-if="board.cover_image_name" class="rounded-lg h-40 w-40 object-cover" :alt="board.board_name + ' images'"
+							:src="`http://${state.ip}:${state.port}/api/v1/images/i/${board.cover_image_name}/thumbnail`" />
+							<div v-else class="rounded-lg h-40 w-40 object-cover bg-gray-300">No Image</div>
 						<figcaption class="absolute text-black bottom-0 right-0 left-0 bg-white align-middle text-center rounded-lg">
 							<p>{{ board.board_name }}</p>
 						</figcaption>
