@@ -13,7 +13,7 @@ if (boards.listBoards == null)
 <template>
 	<div class="w-vhv">
 		<HeaderView />
-		<div class="bg-gray-100 p-6 rounded-lg grid gap-4 lg:grid-cols-8 grid-cols-2 grid-rows-auto" v-if="boards.listBoards">
+		<div class="bg-gray-200 p-6 grid gap-4 lg:grid-cols-8 grid-cols-2 grid-rows-auto" v-if="boards.listBoards">
 			<div class="h-40 w-40 mx-1">
 				<RouterLink :to="`/gallery/none`">
 					<figure class="relative h-40 w-40">
@@ -36,8 +36,8 @@ if (boards.listBoards == null)
 				</RouterLink>
 			</div>
 		</div>
-		<div v-else>
-			<p>LADE BOARDS</p>
+		<div class="bg-gray-200 p-6" v-else>
+			<p>Loading Boards</p>
 		</div>
 	</div>
 </template>

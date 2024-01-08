@@ -22,6 +22,10 @@ export const useModelssd1Store = defineStore('modelssd1', () => {
 			router.push({ name: 'preview' });
 		}
 		// /api/v1/queue/{queue_id}/enqueue_graph queue_id = default
+		if(config.rseed)
+		{
+			config.seed = Math.floor(Math.random() * 10000000000);
+		}
 		fetch('http://' + state.ip + ':' + state.port + '/api/v1/queue/default/enqueue_batch', {
 			method: 'POST',
 			// ignore cors

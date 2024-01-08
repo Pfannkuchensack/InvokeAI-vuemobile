@@ -8,7 +8,7 @@ if (modelssd1.listmodelssd1 == null) {
 	modelssd1.getmodelssd1(state);
 }
 const prompts = useStorage('prompts', { positive: '', negative: '' });
-const config = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '', seed: 0, width: 512, height: 512, clip: 0, scheduler: 'euler' });
+const config = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '', seed: 0, rseed: false, width: 512, height: 512, clip: 0, scheduler: 'euler' });
 const schedulers = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heun_k', 'euler', 'euler_k', 'euler_a', 'kdpm_2', 'kdpm_2_a', 'dpmpp_2s', 'dpmpp_2s_k', 'dpmpp_2m', 'dpmpp_2m_k', 'dpmpp_2m_sde', 'dpmpp_2m_sde_k', 'dpmpp_sde', 'dpmpp_sde_k', 'unipc'];
 </script>
 
@@ -57,8 +57,10 @@ const schedulers = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heu
 		</div>
 		<div class="flex items-center space-x-3 mt-1">
 			<label for="seed" class="text-gray-700">Seed:</label>
-			<input type="number" min="0" v-model="config.seed" id="seed"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
+			<input :disabled="config.rseed" type="number" min="0" v-model="config.seed" id="seed"
+				class="w-1/2 x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
+			<label for="rseed" class="text-gray-700">Random:</label>
+			<input type="checkbox" v-model="config.rseed" id="rseed" />
 		</div>
 		<div class="flex items-center space-x-3 mt-1">
 			<label for="clip" class="text-gray-700">Clip:</label>
@@ -79,7 +81,7 @@ const schedulers = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heu
 			class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-left"
 			@click="modelssd1.invoke(state, prompts, config, false)">Invoke</button>
 		<button type="button"
-			class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-right"
+			class="w-1/2 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-right"
 			@click="modelssd1.invoke(state, prompts, config, true)">Invoke with Preview</button>
 	</div>
 </template>
