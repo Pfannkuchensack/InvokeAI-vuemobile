@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-//import { AdjustmentsHorizontalIcon, PhotoIcon, InformationCircleIcon, PresentationChartBarIcon } from '@heroicons/vue/24/solid';
+import { AdjustmentsHorizontalIcon, PhotoIcon, InformationCircleIcon, PresentationChartBarIcon } from '@heroicons/vue/24/solid';
 </script>
 
 <template>
@@ -28,5 +28,3 @@ import { RouterLink } from 'vue-router';
 		</div>
 	</header>
 </template>
-
-<style scoped></style>

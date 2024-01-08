@@ -15,74 +15,85 @@ const schedulers: any = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun',
 <template>
 	<div>
 		<HeaderView />
-		<textarea v-model="prompts.positive" autocomplete="off" role="presentation" id="pprompt"
-			class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-1" placeholder="Positive Prompt"
-			rows="4"></textarea>
-		<textarea v-model="prompts.negative" autocomplete="off" role="presentation" id="nprompt"
-			class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-1" placeholder="Negative Prompt"
-			rows="4"></textarea>
-		<!-- Lists of models -->
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="model" class="text-gray-700">Model:</label>
-			<select v-if="modelssd1.listmodelssd1" id="model" v-model="config.model"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-				<option v-for="model in modelssd1.listmodelssd1.models" :key="model.model_name">
-					{{ model.model_name }}
-				</option>
-			</select>
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="scheduler" class="text-gray-700">Scheduler:</label>
-			<select v-if="modelssd1.listmodelssd1" id="scheduler" v-model="config.scheduler"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-				<option v-for="scheduler in schedulers" :key="scheduler">
-					{{ scheduler }}
-				</option>
-			</select>
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="iterations" class="text-gray-700">Iterations:</label>
-			<input type="number" min="1" v-model="config.iterations" id="iterations"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="steps" class="text-gray-700">Steps:</label>
-			<input type="number" min="1" v-model="config.steps" id="steps"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="cfg" class="text-gray-700">CFG:</label>
-			<input type="number" min="1" v-model="config.cfg" id="cfg"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="seed" class="text-gray-700">Seed:</label>
-			<input :disabled="config.rseed" type="number" min="0" v-model="config.seed" id="seed"
-				class="w-1/2 x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-			<label for="rseed" class="text-gray-700">Random:</label>
-			<input type="checkbox" v-model="config.rseed" id="rseed" />
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="clip" class="text-gray-700">Clip:</label>
-			<input type="number" min="0" v-model="config.clip" id="clip"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="width" class="text-gray-700">Width:</label>
-			<input type="number" min="1" v-model="config.width" id="width"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<div class="flex items-center space-x-3 mt-1">
-			<label for="height" class="text-gray-700">Height:</label>
-			<input type="number" min="1" v-model="config.height" id="height"
-				class="w-full x-3 py-2 text-gray-700 border rounded-lg focus:outline-none">
-		</div>
-		<button type="button"
-			class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-left"
-			@click="modelssd1.invoke(state, prompts, config, false)">Invoke</button>
-		<button type="button"
-			class="w-1/2 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline float-right"
-			@click="modelssd1.invoke(state, prompts, config, true)">Invoke with Preview</button>
+		<form clas="w-full max-w-lg">
+			<textarea v-model="prompts.positive" autocomplete="off" role="presentation" id="pprompt"
+				class="w-full px-3 py-1 text-gray-700 border rounded-lg text-base mt-1" placeholder="Positive Prompt" rows="4"></textarea>
+			<textarea v-model="prompts.negative" autocomplete="off" role="presentation" id="nprompt"
+				class="w-full px-3 py-1 text-gray-700 border rounded-lg text-base mt-1" placeholder="Negative Prompt" rows="4"></textarea>
+			<!-- Lists of models -->
+			<div class="mb-4">
+				<select v-if="modelssd1.listmodelssd1" id="model" v-model="config.model"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<option v-for="model in modelssd1.listmodelssd1.models" :key="model.model_name">
+						{{ model.model_name }}
+					</option>
+				</select>
+				<label for="model" class=" text-gray-700 text-sm font-bold mb-2">Model:</label>
+			</div>
+			<div class="mb-4">
+				
+				<select v-if="modelssd1.listmodelssd1" id="scheduler" v-model="config.scheduler"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<option v-for="scheduler in schedulers" :key="scheduler">
+						{{ scheduler }}
+					</option>
+				</select>
+				<label for="scheduler" class=" text-gray-700 text-sm font-bold mb-2">Scheduler:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="number" min="1" v-model="config.iterations" id="iterations"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-right">
+					<label for="iterations" class=" text-gray-700 text-sm font-bold mb-2">Iterations:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="number" min="1" v-model="config.steps" id="steps"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="steps" class=" text-gray-700 text-sm font-bold mb-2">Steps:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="number" min="1" v-model="config.cfg" id="cfg"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="cfg" class=" text-gray-700 text-sm font-bold mb-2">CFG:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input :disabled="config.rseed" type="number" min="0" v-model="config.seed" id="seed"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="seed" class=" text-gray-700 text-sm font-bold mb-2">Seed:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="checkbox" v-model="config.rseed" id="rseed" class="w-3/4 px-4 py-3 text-gray-700 border rounded-lg text-base float-end" />
+			</div>
+			<label for="rseed" class=" text-gray-700 text-sm font-bold mb-2">Random Seed:</label>
+			<div class="mb-4">
+				
+				<input type="number" min="0" v-model="config.clip" id="clip"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="clip" class=" text-gray-700 text-sm font-bold mb-2">Clip:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="number" min="1" v-model="config.width" id="width"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="width" class=" text-gray-700 text-sm font-bold mb-2">Width:</label>
+			</div>
+			<div class="mb-4">
+				
+				<input type="number" min="1" v-model="config.height" id="height"
+					class="w-3/4 px-4 py-1 text-gray-700 border rounded-lg text-base float-end">
+					<label for="height" class=" text-gray-700 text-sm font-bold mb-2">Height:</label>
+			</div>
+			<button type="button"
+				class="w-1/4 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-lg focus:shadow-outline float-left"
+				@click="modelssd1.invoke(state, prompts, config, false)">Invoke</button>
+			<button type="button"
+				class="w-1/2 mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-lg focus:shadow-outline float-right"
+				@click="modelssd1.invoke(state, prompts, config, true)">Invoke with Preview</button>
+		</form>
 	</div>
 </template>
 
