@@ -7,7 +7,7 @@ const state = useStorage('invokeip', { ip: '', port: '' });
 const props = defineProps(['board_id', 'board_name']);
 const boards = useBoardsStore();
 let loading = ref(false);
-const loadBoardImages = async (board_id) => {
+const loadBoardImages = async (board_id: string) => {
 	loading.value = true;
 	if(board_id == 'none')
 	{
@@ -19,9 +19,8 @@ const loadBoardImages = async (board_id) => {
 	loading.value = false;
 }
 loadBoardImages(props.board_id);
-console.log(boards.listBoards);
-const board = boards.listBoards.find((board) => board.board_id == props.board_id);
-const showImageFull = async (image) => {
+const board = boards.listBoards.find((board: any) => board.board_id == props.board_id);
+const showImageFull = async (image: string) => {
 	// open new tab with image
 	window.open(`http://${state.value.ip}:${state.value.port}/api/v1/images/i/${image}/full`);
 }

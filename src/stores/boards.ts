@@ -21,13 +21,13 @@ export const useBoardsStore = defineStore('boards', () => {
 	async function getImagesWithoutBoard() {
 		await fetch('http://' + state.value.ip + ':' + state.value.port + '/api/v1/images/?categories=general&is_intermediate=false&board_id=none&offset=0&limit=100').then(response => response.json()).then(data => {
 			let data2: any = [];
-			data.items.forEach(e => { 
+			data.items.forEach((e: { image_name: any; }) => {
 				data2.push(e.image_name);
-			 })
+			})
 			listBoardImages.value = data2;
 		});
 		return listBoardImages;
 	}
 
-	return { listBoards, listBoardImages, getboards, getImagesInBoard, getImagesWithoutBoard}
+	return { listBoards, listBoardImages, getboards, getImagesInBoard, getImagesWithoutBoard }
 })

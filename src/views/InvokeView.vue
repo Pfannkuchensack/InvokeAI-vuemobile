@@ -7,9 +7,9 @@ const modelssd1 = useModelssd1Store();
 if (modelssd1.listmodelssd1 == null) {
 	modelssd1.getmodelssd1(state);
 }
-const prompts = useStorage('prompts', { positive: '', negative: '' });
-const config = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '', seed: 0, rseed: false, width: 512, height: 512, clip: 0, scheduler: 'euler' });
-const schedulers = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heun_k', 'euler', 'euler_k', 'euler_a', 'kdpm_2', 'kdpm_2_a', 'dpmpp_2s', 'dpmpp_2s_k', 'dpmpp_2m', 'dpmpp_2m_k', 'dpmpp_2m_sde', 'dpmpp_2m_sde_k', 'dpmpp_sde', 'dpmpp_sde_k', 'unipc'];
+const prompts: any = useStorage('prompts', { positive: '', negative: '' });
+const config: any = useStorage('config', { steps: 25, iterations: 1, cfg: 7, model: '', seed: 0, rseed: false, width: 512, height: 512, clip: 0, scheduler: 'euler' });
+const schedulers: any = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun', 'heun_k', 'euler', 'euler_k', 'euler_a', 'kdpm_2', 'kdpm_2_a', 'dpmpp_2s', 'dpmpp_2s_k', 'dpmpp_2m', 'dpmpp_2m_k', 'dpmpp_2m_sde', 'dpmpp_2m_sde_k', 'dpmpp_sde', 'dpmpp_sde_k', 'unipc'];
 </script>
 
 <template>

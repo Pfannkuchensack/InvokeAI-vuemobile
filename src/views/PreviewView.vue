@@ -4,9 +4,9 @@ import HeaderView from "../components/HeaderView.vue";
 import { useStorage } from '@vueuse/core';
 const state = useStorage('invokeip', { ip: '', port: '' });
 let loading = ref(false);
-let generator_progress = ref(null);
-const socket = inject('socket');
-socket.on('generator_progress', (data) => {
+let generator_progress : any = ref(null);
+const socket: any= inject('socket');
+socket.on('generator_progress', (data: any) => {
 	console.log(data);
 	generator_progress.value = data;
 });
