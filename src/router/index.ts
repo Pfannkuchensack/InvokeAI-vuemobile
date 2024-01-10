@@ -10,8 +10,8 @@ const router = createRouter({
     },
     {
       path: '/t2i',
-      name: 'home',
-      component: () => import('../views/HomeView.vue')
+      name: 'invoke',
+      component: () => import('../views/InvokeView.vue')
     },
 		{
       path: '/preview',

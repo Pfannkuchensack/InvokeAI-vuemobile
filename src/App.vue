@@ -25,7 +25,7 @@ if (state.value.ip != '' && state.value.port != '') {
 
 <template>
   <div class="md:container md:mx-auto">
-    <RouterView :modelssd1="modelssd1" />
+    <RouterView/>
   </div>
 </template>
 

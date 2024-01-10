@@ -1,1 +1,14 @@
 @import './base.css';
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+    background: #72e078;
+  }
+}
+textarea:focus,
+input:focus + label {
+  color: #72e078; 
+}
