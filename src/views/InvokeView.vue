@@ -15,7 +15,7 @@ const schedulers: any = ['ddim', 'ddpm', 'deis', 'lms', 'lms_k', 'pndm', 'heun',
 <template>
 	<div>
 		<HeaderView />
-		<form clas="w-full max-w-lg">
+		<form class="w-full">
 			<textarea v-model="prompts.positive" autocomplete="off" role="presentation" id="pprompt"
 				class="w-full px-3 py-1 text-gray-700 border rounded-lg text-base mt-1" placeholder="Positive Prompt" rows="4"></textarea>
 			<textarea v-model="prompts.negative" autocomplete="off" role="presentation" id="nprompt"

@@ -29,5 +29,17 @@ export const useBoardsStore = defineStore('boards', () => {
 		return listBoardImages;
 	}
 
-	return { listBoards, listBoardImages, getboards, getImagesInBoard, getImagesWithoutBoard }
+	async function addImageToBoard(board_id: string, image_name: string) {
+		await fetch('http://' + state.value.ip + ':' + state.value.port + '/api/v1/board_images/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ board_id: board_id, image_name: image_name })
+		}).then(response => response.json()).then(data => {
+			return data;
+		});
+	}
+
+	return { listBoards, listBoardImages, getboards, getImagesInBoard, getImagesWithoutBoard, addImageToBoard }
 })

@@ -33,7 +33,17 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
-    }
+    },
+		{
+      path: '/random',
+      name: 'random',
+      component: () => import('../views/RandomView.vue')
+    },
+		{
+			path: '/swipe',
+			name: 'swipe',
+			component: () => import('../views/SwipeView.vue')
+		}
   ]
 })
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { AdjustmentsHorizontalIcon, PhotoIcon, InformationCircleIcon, PresentationChartBarIcon } from '@heroicons/vue/24/solid';
+import { AdjustmentsHorizontalIcon, PhotoIcon, InformationCircleIcon, PresentationChartBarIcon, VariableIcon, ArrowsRightLeftIcon } from '@heroicons/vue/24/solid';
 </script>
 
 <template>
@@ -22,6 +22,12 @@ import { AdjustmentsHorizontalIcon, PhotoIcon, InformationCircleIcon, Presentati
 					</RouterLink>
 					<RouterLink active-class="underline decoration-solid text-yellow" to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900">
 						<InformationCircleIcon class="h-6 w-6 inline" title="About" />
+					</RouterLink>
+					<!--<RouterLink active-class="underline decoration-solid text-yellow" to="/random" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						<VariableIcon class="h-6 w-6 inline" title="Random Prompt" />
+					</RouterLink>-->
+					<RouterLink active-class="underline decoration-solid text-yellow" to="/swipe" class="text-base font-medium text-gray-500 hover:text-gray-900">
+						<ArrowsRightLeftIcon class="h-6 w-6 inline" title="Swipe" />
 					</RouterLink>
 				</nav>
 			</div>
